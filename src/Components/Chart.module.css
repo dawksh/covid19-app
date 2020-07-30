@@ -1,0 +1,10 @@
+.ChartContainer{
+    width: 60%;
+    margin: auto;
+}
+
+@media(max-width: 760px){
+ .ChartContainer{
+     width: 90%;
+ }
+}

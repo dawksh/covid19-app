@@ -1,24 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState} from 'react';
 import './App.css';
+import Card from './Components/Card';
+import ApiReducer from './Components/Api';
+import Chart from './Components/Chart';
+import SearchCountry from './Components/SearchCountry';
+import covid19 from './Components/images/covid19.jpg';
+import ClipLoader from "react-spinners/ClipLoader";
 
 function App() {
+
+const [search, setSearch] = useState('global');
+
+const {loading, data, dailyData, countries} = ApiReducer(search);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+    {loading && <ClipLoader size={ 50 } color={"#123abc"} margin={'auto'} />}
+    {  !loading && ( <div>
+      <img src={covid19} alt="COVID-19"/>
+      <h2>{search} data</h2>
+      <Card data={data} />
+    <SearchCountry countries={countries} setSearch={setSearch}/>
+    <Chart search={search} data={data} dailyData={dailyData}/></div>
+    )
+
+    }
     </div>
   );
 }

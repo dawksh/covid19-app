@@ -15,10 +15,9 @@ const {loading, data, dailyData, countries} = ApiReducer(search);
 
   return (
     <div className="App">
-
+     <img src={covid19} alt="COVID-19"/>
     {loading && <ClipLoader size={ 50 } color={"#123abc"} margin={'auto'} />}
     {  !loading && ( <div>
-      <img src={covid19} alt="COVID-19"/>
       <h2>{search} data</h2>
       <Card data={data} />
     <SearchCountry countries={countries} setSearch={setSearch}/>
